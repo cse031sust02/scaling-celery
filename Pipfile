@@ -8,6 +8,8 @@ verify_ssl = true
 [packages]
 django = "*"
 redis = "*"
+flower = "*"
+celery = "==4.4.0"
 
 [requires]
 python_version = "3.7"
