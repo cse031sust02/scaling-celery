@@ -43,3 +43,11 @@ def long_a_inner_long(id):
     sleep(4)
     print("END : INNER LONG TASK : #COUNTER-{}".format(id))
     return 'Inner-Long-Task-{}'.format(id)
+
+
+@shared_task(name="Result Backend Demo", ignore_result=False)
+def result_backend_task():
+    print("START : RESULT BACKEND")
+    sleep(8)
+    print("END : RESULT BACKEND")
+    return 'demo result'
