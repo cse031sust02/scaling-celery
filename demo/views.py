@@ -1,8 +1,9 @@
 import time
 
+from celery.result import AsyncResult
 from django.http import HttpResponse
 
-from .tasks import long_a, medium_b, short_c, result_backend_task
+from .tasks import long_a, medium_b, result_backend_task, short_c
 
 
 def index(request):
@@ -27,3 +28,9 @@ def result_backend(request):
     is_ready = result.ready()
     print(is_ready)
     return HttpResponse("The Result Backend Demo is running!")
+
+
+def remove_task(request, task_id):
+    print("ID===",task_id)
+    AsyncResult(task_id).revoke(terminate=True)
+    return HttpResponse("Removing the task!")
